@@ -1,7 +1,7 @@
-import React from "react";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-import "./css/ProdutoDetalhes.css";
+import React from 'react';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+import './css/ProdutoDetalhes.css'; 
 
 const ProdutoDetalhes = () => {
   return (
@@ -11,21 +11,11 @@ const ProdutoDetalhes = () => {
         <div className="row">
           <div className="col-md-6">
             <div className="produto-imagem-principal mb-3">
-              <img
-                src="/img/redcamisa.jpg"
-                alt="Produto"
-                className="img-fluid rounded"
-              />
+              <img src="/img/redcamisa.jpg" alt="Produto" className="img-fluid rounded" />
             </div>
             <div className="produto-miniaturas d-flex gap-2">
               {[...Array(3)].map((_, i) => (
-                <img
-                  key={i}
-                  src="/img/redcamisa.jpg"
-                  alt="Miniatura"
-                  className="img-thumbnail"
-                  style={{ width: "70px", height: "70px", objectFit: "cover" }}
-                />
+                <img key={i} src="/img/redcamisa.jpg" alt="Miniatura" className="img-thumbnail" style={{ width: '70px', height: '70px', objectFit: 'cover' }} />
               ))}
             </div>
           </div>
@@ -50,16 +40,11 @@ const ProdutoDetalhes = () => {
               </div>
             </div>
 
-            <button className="btn btn-dark w-100 py-2">
-              Adicionar ao Carrinho
-            </button>
+            <button className="btn btn-dark w-100 py-2">Adicionar ao Carrinho</button>
 
             <div className="produto-descricao mt-5">
               <h5>Descrição</h5>
-              <p>
-                Uma camiseta pensada para devs que prezam por conforto e estilo
-                no dia a dia do código. Ideal para todas as ocasiões tech!
-              </p>
+              <p>Uma camiseta pensada para devs que prezam por conforto e estilo no dia a dia do código. Ideal para todas as ocasiões tech!</p>
             </div>
           </div>
         </div>
@@ -70,11 +55,7 @@ const ProdutoDetalhes = () => {
             {[...Array(4)].map((_, i) => (
               <div key={i} className="col-6 col-md-3 mb-4">
                 <div className="card h-100 shadow-sm">
-                  <img
-                    src="/img/redcamisa.jpg"
-                    className="card-img-top"
-                    alt="Produto Relacionado"
-                  />
+                  <img src="/img/redcamisa.jpg" className="card-img-top" alt="Produto Relacionado" />
                   <div className="card-body text-center">
                     <h6 className="card-title">Camiseta Dev</h6>
                     <p className="card-text fw-bold">R$ 89,90</p>

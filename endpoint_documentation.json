@@ -1,0 +1,81 @@
+{
+  "info": {
+    "_postman_id": "c8b2c824-9b17-4a02-a202-collection-id",
+    "name": "CodeWear Ecommerce API",
+    "description": "Documentação da API para gerenciamento de usuários, carrinhos, produtos e comentários.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Usuário",
+      "item": [
+        { "name": "Listar usuários", "request": { "method": "GET", "url": "{{baseUrl}}/usuarios" } },
+        { "name": "Buscar usuário por ID", "request": { "method": "GET", "url": "{{baseUrl}}/usuarios/:id" } },
+        { "name": "Criar usuário", "request": { "method": "POST", "url": "{{baseUrl}}/usuarios" } },
+        { "name": "Atualizar usuário", "request": { "method": "PUT", "url": "{{baseUrl}}/usuarios/:id" } },
+        { "name": "Deletar usuário", "request": { "method": "DELETE", "url": "{{baseUrl}}/usuarios/:id" } },
+        { "name": "Listar carrinhos do usuário", "request": { "method": "GET", "url": "{{baseUrl}}/usuarios/:id/carrinhos" } }
+      ]
+    },
+    {
+      "name": "Carrinho",
+      "item": [
+        { "name": "Listar carrinhos", "request": { "method": "GET", "url": "{{baseUrl}}/carrinhos" } },
+        { "name": "Buscar carrinho por ID", "request": { "method": "GET", "url": "{{baseUrl}}/carrinhos/:id" } },
+        { "name": "Criar novo carrinho", "request": { "method": "POST", "url": "{{baseUrl}}/carrinhos" } },
+        { "name": "Alterar carrinho", "request": { "method": "PUT", "url": "{{baseUrl}}/carrinhos/:id" } },
+        { "name": "Deletar carrinho", "request": { "method": "DELETE", "url": "{{baseUrl}}/carrinhos/:id" } },
+        { "name": "Finalizar carrinho", "request": { "method": "POST", "url": "{{baseUrl}}/carrinhos/:id/finalizar" } },
+        { "name": "Listar compras finalizadas por usuário", "request": { "method": "GET", "url": "{{baseUrl}}/carrinhos/usuario/:userId?finalizado=true" } }
+      ]
+    },
+    {
+      "name": "Item Carrinho",
+      "item": [
+        { "name": "Listar itens de carrinho", "request": { "method": "GET", "url": "{{baseUrl}}/itemcarrinho" } },
+        { "name": "Buscar item de carrinho por ID", "request": { "method": "GET", "url": "{{baseUrl}}/itemcarrinho/:id" } },
+        { "name": "Adicionar item ao carrinho", "request": { "method": "POST", "url": "{{baseUrl}}/itemcarrinho" } },
+        { "name": "Alterar item do carrinho", "request": { "method": "PUT", "url": "{{baseUrl}}/itemcarrinho/:id" } },
+        { "name": "Deletar item do carrinho", "request": { "method": "DELETE", "url": "{{baseUrl}}/itemcarrinho/:id" } },
+        { "name": "Listar itens de um carrinho", "request": { "method": "GET", "url": "{{baseUrl}}/carrinhos/:id/itens" } }
+      ]
+    },
+    {
+      "name": "Produto",
+      "item": [
+        { "name": "Listar produtos", "request": { "method": "GET", "url": "{{baseUrl}}/produtos" } },
+        { "name": "Buscar produto por ID", "request": { "method": "GET", "url": "{{baseUrl}}/produtos/:id" } },
+        { "name": "Criar produto", "request": { "method": "POST", "url": "{{baseUrl}}/produtos" } },
+        { "name": "Alterar produto", "request": { "method": "PUT", "url": "{{baseUrl}}/produtos/:id" } },
+        { "name": "Deletar produto", "request": { "method": "DELETE", "url": "{{baseUrl}}/produtos/:id" } },
+        { "name": "Listar comentários do produto", "request": { "method": "GET", "url": "{{baseUrl}}/produtos/:id/comentarios" } },
+        { "name": "Listar imagens do produto", "request": { "method": "GET", "url": "{{baseUrl}}/produtos/:id/imagens" } }
+      ]
+    },
+    {
+      "name": "Comentário",
+      "item": [
+        { "name": "Listar comentários", "request": { "method": "GET", "url": "{{baseUrl}}/comentarios" } },
+        { "name": "Buscar comentário por ID", "request": { "method": "GET", "url": "{{baseUrl}}/comentarios/:id" } },
+        { "name": "Criar comentário", "request": { "method": "POST", "url": "{{baseUrl}}/comentarios" } },
+        { "name": "Alterar comentário", "request": { "method": "PUT", "url": "{{baseUrl}}/comentarios/:id" } },
+        { "name": "Deletar comentário", "request": { "method": "DELETE", "url": "{{baseUrl}}/comentarios/:id" } },
+        { "name": "Listar comentários de um produto", "request": { "method": "GET", "url": "{{baseUrl}}/comentarios/produto/:produtoId" } }
+      ]
+    },
+    {
+      "name": "Imagem Produto",
+      "item": [
+        { "name": "Listar imagens do produto", "request": { "method": "GET", "url": "{{baseUrl}}/produtos/:produtoId/imagens" } },
+        { "name": "Adicionar imagem ao produto", "request": { "method": "POST", "url": "{{baseUrl}}/produtos/:produtoId/imagens" } },
+        { "name": "Deletar imagem", "request": { "method": "DELETE", "url": "{{baseUrl}}/imagens/:imagemId" } }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+.login-page {
+  min-height: 100vh;
+  background: linear-gradient(to right, #121212, #1f1f1f);
+  padding: 2rem;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  background-color: #fff;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+}

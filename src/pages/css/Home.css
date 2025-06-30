@@ -1,25 +1,189 @@
 .hero-section {
-    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+  background: 
+    linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
     url('./teste.png') no-repeat center center;
-    background-color: black;
-    background-size: cover;
-    background-position: 30% 45%;
-    height: 100vh;
-    opacity: 100%;
-    padding: 15%;
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  color: white;
+  padding: 8% 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
+/* Suaviza textos e títulos na hero */
+.hero-section__title {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.hero-section__subtitle {
+  font-size: 1.25rem;
+  max-width: 800px;
+  margin: 0 auto;
+  opacity: 0.95;
+}
+
+/* COLEÇÕES */
 .colecoes__item {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-  
+
+.colecoes__item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
 .colecoes__image {
-    width: 100%; 
-    height: 300px; 
-    object-fit: cover; 
-    border-radius: 8px;
+  width: 100%;
+  max-height: 280px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 0.75rem;
 }
-  
+
+.colecoes__text {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+}
+
+.nova-colecao__list {
+  gap: 1rem;
+}
+
+.nova-colecao__item {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  height: 100%;
+}
+
+.nova-colecao__item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+}
+
+.nova-colecao__image-container {
+  width: 100%;
+  height: 260px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nova-colecao__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  border-bottom: 1px solid #eee;
+}
+
+.nova-colecao__item:hover .nova-colecao__image {
+  transform: scale(1.05);
+}
+
+.nova-colecao__name,
+.nova-colecao__price {
+  padding: 0.75rem 1rem;
+  text-align: center;
+}
+
+.nova-colecao__text {
+  font-size: 1rem;
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+
+.nova-colecao__price .nova-colecao__text {
+  color: #d9534f;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+  .nova-colecao__image-container {
+    height: 200px;
+  }
+}
+
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 15% 5%;
+  }
+
+  .hero-section__title {
+    font-size: 2rem;
+  }
+
+  .hero-section__subtitle {
+    font-size: 1rem;
+  }
+
+  .colecoes__image {
+    height: 220px;
+  }
+}
+.mais-vendidos__item {
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+  text-align: center;
+}
+
+.mais-vendidos__item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+}
+
+.mais-vendidos__image {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-bottom: 1px solid #eee;
+  transition: transform 0.3s ease;
+}
+
+.mais-vendidos__item:hover .mais-vendidos__image {
+  transform: scale(1.05);
+}
+
+.mais-vendidos__text {
+  font-size: 1rem;
+  color: #333;
+  font-weight: 600;
+  margin: 0.75rem 0 0.25rem;
+}
+
+.mais-vendidos__price {
+  color: #d9534f;
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .mais-vendidos__image {
+    height: 200px;
+  }
+}

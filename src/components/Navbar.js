@@ -1,9 +1,8 @@
-// src/components/Navbar.jsx
-
 import React from 'react';
 import './css/Navbar.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
+import { FaUserCircle, FaShoppingCart, FaSignOutAlt, FaSignInAlt, FaUserPlus } from 'react-icons/fa';
 
 const Navbar = () => {
   const { isAuthenticated, user, logout } = useAuth();
@@ -16,10 +15,11 @@ const Navbar = () => {
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark navbar-codewear fixed-top">
-      <div className="container">
-        <a className="navbar-brand navbar-codewear__brand" href="/">
+      <div className="container d-flex justify-content-between align-items-center">
+        <Link className="navbar-brand navbar-codewear__brand" to="/">
           Code<span className="text-danger">Wear</span>
-        </a>
+        </Link>
+
         <button
           className="navbar-toggler"
           type="button"
@@ -28,35 +28,42 @@ const Navbar = () => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav ms-auto navbar-codewear__menu">
+
+        <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul className="navbar-nav align-items-center gap-3">
             <li className="nav-item">
-              <a className="nav-link" href="/compras">
+              <Link className="nav-link" to="/compras">
                 Coleções
-              </a>
+              </Link>
             </li>
 
             {isAuthenticated ? (
               <>
-                <li className="nav-item">
-                  <span className="nav-link">Bem-vindo, {user?.nome}</span>
+                <li className="nav-item d-flex align-items-center text-white">
+                  <FaUserCircle size={22} className="me-1 text-secondary" />
+                  <span className="nav-link">Olá, {user?.nomeCompleto.split(' ')[0]}</span>
                 </li>
                 <li className="nav-item">
-                  <button className="btn btn-outline-light ms-2" onClick={handleLogout}>
-                    Logout
+                  <Link className="btn btn-outline-light d-flex align-items-center gap-2" to="/carrinho">
+                    <FaShoppingCart /> Meu Carrinho
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <button className="btn btn-danger d-flex align-items-center gap-2" onClick={handleLogout}>
+                    <FaSignOutAlt /> Logout
                   </button>
                 </li>
               </>
             ) : (
               <>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/login">
-                    Login
+                  <Link className="btn btn-outline-light d-flex align-items-center gap-2" to="/login">
+                    <FaSignInAlt /> Login
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="btn btn-danger ms-2" to="/register">
-                    Registrar
+                  <Link className="btn btn-danger d-flex align-items-center gap-2" to="/register">
+                    <FaUserPlus /> Registrar
                   </Link>
                 </li>
               </>

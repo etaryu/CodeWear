@@ -5,6 +5,8 @@ export const useUsuarios = () => {
 
   const buscarUsuarioPorId = (id) => api.get(`/usuarios/${id}`);
 
+  const autenticarUsuarioPorId = (id) => api.get(`/usuarios/${id}/autenticacao`);
+
   const criarUsuario = (data) => api.post('/usuarios', data);
 
   const atualizarUsuario = (id, data) => api.put(`/usuarios/${id}`, data);
@@ -16,6 +18,7 @@ export const useUsuarios = () => {
   return {
     listarUsuarios,
     buscarUsuarioPorId,
+    autenticarUsuarioPorId, // 👈 novo método
     criarUsuario,
     atualizarUsuario,
     deletarUsuario,

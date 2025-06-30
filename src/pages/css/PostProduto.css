@@ -1,0 +1,127 @@
+.form-container {
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 40px;
+  margin-top: 70px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+}
+
+.form-container h2 {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  text-align: center;
+  color: #222;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.form-produto {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.linha-dupla {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-produto label {
+  font-weight: 500;
+  color: #333;
+  display: block;
+}
+
+.form-produto input[type="text"],
+.form-produto input[type="number"],
+textarea {
+  padding: 14px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 16px;
+  width: 100%;
+  background: #f9f9f9;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.upload-box {
+  border: 2px dashed #ccc;
+  border-radius: 12px;
+  text-align: center;
+  padding: 40px;
+  cursor: pointer;
+  background-color: #fefefe;
+}
+
+.upload-box:hover {
+  background-color: #f8f8f8;
+}
+
+.form-produto button {
+  background-color: #111;
+  color: white;
+  padding: 14px;
+  font-size: 16px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.form-produto button:hover {
+  background-color: #333;
+}
+
+.mensagem {
+  margin-top: 20px;
+  font-weight: 600;
+  text-align: center;
+  color: #28a745;
+}
+
+.preview-container {
+  margin-top: 16px;
+  text-align: center;
+}
+
+.preview-image {
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: 12px;
+  object-fit: cover;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+
+select {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+  appearance: none; /* remove setinha padrão em alguns navegadores */
+}
+
+select:focus {
+  outline: none;
+  border-color: #007bff; /* azul de foco */
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+select option {
+  padding: 10px;
+}

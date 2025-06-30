@@ -9,10 +9,11 @@ const Register = () => {
   const { criarUsuario } = useUsuarios();
   const navigate = useNavigate();
 
-  const [nome, setNome] = useState('');
+  const [nomeCompleto, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [erro, setErro] = useState('');
+  const [roleId] = useState(1);
   const [sucesso, setSucesso] = useState(false);
 
   const handleSubmit = async (e) => {
@@ -20,9 +21,10 @@ const Register = () => {
 
     try {
       await criarUsuario({
-        nome,
+        nomeCompleto,
         email,
         senha,
+        roleId,
       });
       setSucesso(true);
       setErro('');
@@ -54,7 +56,7 @@ const Register = () => {
               <input
                 type="text"
                 className="form-control"
-                value={nome}
+                value={nomeCompleto}
                 onChange={(e) => setNome(e.target.value)}
                 required
               />

@@ -16,9 +16,14 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const sucesso = await login(email, senha);
-    if (sucesso) {
-      navigate('/');
+    const resultado = await login(email, senha);
+    // Supondo que resultado seja { sucesso: true, usuario: { roleId: number, ... } }
+    if (resultado.sucesso) {
+      if (resultado.usuario.roleId === 2) {
+        navigate('/adm');
+      } else {
+        navigate('/');
+      }
     } else {
       setErro('Email ou senha inválidos');
     }
@@ -29,7 +34,9 @@ const Login = () => {
       <Navbar />
       <div className="login-page d-flex align-items-center justify-content-center">
         <div className="login-card p-5 shadow-lg rounded-4">
-          <h2 className="text-center mb-4 text-danger fw-bold">Code<span className="text-dark">Wear</span></h2>
+          <h2 className="text-center mb-4 text-danger fw-bold">
+            Code<span className="text-dark">Wear</span>
+          </h2>
           <h5 className="text-center mb-4 text-secondary">Faça seu login</h5>
           <form onSubmit={handleSubmit}>
             {erro && <div className="alert alert-danger">{erro}</div>}
@@ -58,8 +65,12 @@ const Login = () => {
             </button>
           </form>
           <div className="text-center mt-4">
-            <small className="text-muted">Ainda não tem uma conta? <a href="/register
-        " className="text-danger">Cadastre-se</a></small>
+            <small className="text-muted">
+              Ainda não tem uma conta?{' '}
+              <a href="/register" className="text-danger">
+                Cadastre-se
+              </a>
+            </small>
           </div>
         </div>
       </div>

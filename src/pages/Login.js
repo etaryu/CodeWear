@@ -16,18 +16,14 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const resultado = await login(email, senha);
-    // Supondo que resultado seja { sucesso: true, usuario: { roleId: number, ... } }
-    if (resultado.sucesso) {
-      if (resultado.usuario.roleId === 2) {
-        navigate('/adm');
-      } else {
-        navigate('/');
-      }
+    const sucesso = await login(email, senha);
+
+    if (sucesso) {
     } else {
       setErro('Email ou senha inválidos');
     }
-  };
+};
+
 
   return (
     <>

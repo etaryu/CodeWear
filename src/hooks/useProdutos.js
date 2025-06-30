@@ -1,7 +1,6 @@
 import api from '../services/api';
 
 export const useProdutos = () => {
-  // Cache interno para os produtos com imagens
   let cacheProdutosComImagem = null;
 
   const listarProdutos = async () => {
@@ -42,7 +41,6 @@ export const useProdutos = () => {
     return { data: produtosComImagem };
   };
 
-  // As demais funções continuam iguais
 
   const buscarProdutoPorId = (id) => api.get(`/produtos/${id}`);
 

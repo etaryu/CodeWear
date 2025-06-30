@@ -27,6 +27,8 @@ export const useAuth = () => {
         // Se for admin, redireciona para /adm
         if (usuarioAutenticado.roleId === 2) {
           navigate('/adm');
+        } else {
+          navigate('/');
         }
 
         return true;

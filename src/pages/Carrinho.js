@@ -13,7 +13,7 @@ const Carrinho = () => {
   const navigate = useNavigate();
 
   const { finalizarCarrinho, listarCarrinhosDoUsuario } = useCarrinho();
-  const { criarItem, listarItensDoCarrinho, atualizarItem } = useItemCarrinho();
+  const { criarItem, listarItensDoCarrinho, atualizarItem, deletarItem } = useItemCarrinho();
   const { buscarProdutoPorIdComImagens } = useProdutos();
 
   const [itensTemporarios, setItensTemporarios] = useState([]);
@@ -147,6 +147,22 @@ const Carrinho = () => {
     }
   };
 
+  const handleRemoverItemBackend = async (itemId) => {
+    try {
+      await deletarItem(itemId);
+      await fetchItensBackend(carrinhoId);
+    } catch (err) {
+      console.error('Erro ao remover item do carrinho real:', err);
+      alert('Erro ao remover item do carrinho.');
+    }
+  };
+
+  const handleRemoverItemTemporario = (produtoId) => {
+    const novosItens = itensTemporarios.filter((item) => item.id !== produtoId);
+    setItensTemporarios(novosItens);
+    localStorage.setItem('carrinho', JSON.stringify(novosItens));
+  };
+
   const handleFinalizarCompra = async () => {
     try {
       if (!carrinhoId || itensBackend.length === 0) {
@@ -184,6 +200,12 @@ const Carrinho = () => {
                   <p>Qtd: {item.quantidade}</p>
                   <p>Unitário: R$ {item.preco.toFixed(2)}</p>
                   <p>Total: R$ {(item.preco * item.quantidade).toFixed(2)}</p>
+                  <button
+                    className="btn btn-outline-danger btn-sm mt-2"
+                    onClick={() => handleRemoverItemTemporario(item.id)}
+                  >
+                    Remover
+                  </button>
                 </div>
               </div>
             ))
@@ -215,6 +237,12 @@ const Carrinho = () => {
                   <p>Qtd: {item.quantidade}</p>
                   <p>Unitário: R$ {(item.precoUnitario ?? 0).toFixed(2)}</p>
                   <p>Total: R$ {((item.precoUnitario ?? 0) * (item.quantidade ?? 0)).toFixed(2)}</p>
+                  <button
+                    className="btn btn-outline-danger btn-sm mt-2"
+                    onClick={() => handleRemoverItemBackend(item.id)}
+                  >
+                    Remover
+                  </button>
                 </div>
               </div>
             ))

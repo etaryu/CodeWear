@@ -28,8 +28,7 @@ const ProdutoDetalhes = () => {
   const [enviandoComentario, setEnviandoComentario] = useState(false);
   const [quantidade, setQuantidade] = useState(1);
 
-  const { criarCarrinho, buscarCarrinhoPorId, listarCarrinhosDoUsuario } = useCarrinho();
-const { criarItem, listarItensDoCarrinho,atualizarItem } = useItemCarrinho();
+  const { criarCarrinho, listarCarrinhosDoUsuario } = useCarrinho();
 
   const [usuariosMap, setUsuariosMap] = useState({});
 
@@ -83,74 +82,68 @@ const { criarItem, listarItensDoCarrinho,atualizarItem } = useItemCarrinho();
   }, [id]);
 
   const handleAdicionarAoCarrinho = async () => {
-  if (!isAuthenticated) {
-    navigate('/login');
-    return;
-  }
-
-  if (quantidade < 1) {
-    alert('A quantidade deve ser pelo menos 1.');
-    return;
-  }
-
-  try {
-    const userId = user?.id || JSON.parse(localStorage.getItem('user'))?.id;
-
-    if (!userId) {
-      alert('Usuário inválido. Faça login novamente.');
+    if (!isAuthenticated) {
       navigate('/login');
       return;
     }
 
-    // ⚠️ Não confia no localStorage — busca do backend
-    let carrinhoId;
-
-    const resCarrinhos = await listarCarrinhosDoUsuario(userId);
-    const carrinhos = resCarrinhos.data || [];
-
-    const carrinhoAberto = carrinhos.find(c => c.finalizado === false);
-
-    if (carrinhoAberto) {
-      carrinhoId = carrinhoAberto.id;
-    } else {
-      const resNovo = await criarCarrinho(userId);
-      carrinhoId = resNovo.data.id;
+    if (quantidade < 1) {
+      alert('A quantidade deve ser pelo menos 1.');
+      return;
     }
 
-    // Agora sim salva no localStorage (pra uso futuro)
-    localStorage.setItem('carrinhoId', carrinhoId);
+    try {
+      const userId = user?.id || JSON.parse(localStorage.getItem('user'))?.id;
 
-    // Salva o item no localStorage temporariamente
-    const carrinhoTemporario = JSON.parse(localStorage.getItem('carrinho')) || [];
+      if (!userId) {
+        alert('Usuário inválido. Faça login novamente.');
+        navigate('/login');
+        return;
+      }
 
-    const indexExistente = carrinhoTemporario.findIndex(p => p.id === produto.id);
+      // ⚠️ Não confia no localStorage — busca do backend
+      let carrinhoId;
 
-    if (indexExistente !== -1) {
-      carrinhoTemporario[indexExistente].quantidade += quantidade;
-    } else {
-      carrinhoTemporario.push({
-        id: produto.id,
-        nome: produto.nome,
-        preco: produto.preco,
-        imagem: imagens[0]?.url || null,
-        quantidade,
-      });
+      const resCarrinhos = await listarCarrinhosDoUsuario(userId);
+      const carrinhos = resCarrinhos.data || [];
+
+      const carrinhoAberto = carrinhos.find(c => c.finalizado === false);
+
+      if (carrinhoAberto) {
+        carrinhoId = carrinhoAberto.id;
+      } else {
+        const resNovo = await criarCarrinho(userId);
+        carrinhoId = resNovo.data.id;
+      }
+
+      // Agora sim salva no localStorage (pra uso futuro)
+      localStorage.setItem('carrinhoId', carrinhoId);
+
+      // Salva o item no localStorage temporariamente
+      const carrinhoTemporario = JSON.parse(localStorage.getItem('carrinho')) || [];
+
+      const indexExistente = carrinhoTemporario.findIndex(p => p.id === produto.id);
+
+      if (indexExistente !== -1) {
+        carrinhoTemporario[indexExistente].quantidade += quantidade;
+      } else {
+        carrinhoTemporario.push({
+          id: produto.id,
+          nome: produto.nome,
+          preco: produto.preco,
+          imagem: imagens[0]?.url || null,
+          quantidade,
+        });
+      }
+
+      localStorage.setItem('carrinho', JSON.stringify(carrinhoTemporario));
+
+      navigate('/carrinho');
+    } catch (error) {
+      console.error('Erro ao adicionar ao carrinho:', error);
+      alert('Não foi possível adicionar ao carrinho. Tente novamente.');
     }
-
-    localStorage.setItem('carrinho', JSON.stringify(carrinhoTemporario));
-
-    alert('Produto adicionado ao carrinho! Ainda não foi enviado ao servidor.');
-    navigate('/carrinho');
-  } catch (error) {
-    console.error('Erro ao adicionar ao carrinho:', error);
-    alert('Não foi possível adicionar ao carrinho. Tente novamente.');
-  }
-};
-
-
-
-
-  // O restante do seu componente permanece igual...
+  };
 
   const handleEnviarComentario = async () => {
     if (!isAuthenticated) {

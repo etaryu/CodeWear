@@ -167,25 +167,6 @@ const EditarProduto = () => {
               </div>
             </div>
 
-            <div className="mb-3">
-              <label htmlFor="novaImagem" className="form-label">
-                Adicionar nova imagem
-              </label>
-              <input
-                type="file"
-                id="novaImagem"
-                accept="image/*"
-                className="form-control"
-                onChange={handleImagemChange}
-              />
-              <input
-                type="text"
-                className="form-control mt-2"
-                placeholder="Descrição da nova imagem"
-                value={novaDescricaoImagem}
-                onChange={(e) => setNovaDescricaoImagem(e.target.value)}
-              />
-            </div>
 
             <button
               type="submit"

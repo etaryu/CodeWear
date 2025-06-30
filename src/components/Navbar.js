@@ -2,7 +2,14 @@ import React from 'react';
 import './css/Navbar.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
-import { FaUserCircle, FaShoppingCart, FaSignOutAlt, FaSignInAlt, FaUserPlus } from 'react-icons/fa';
+import {
+  FaUserCircle,
+  FaShoppingCart,
+  FaSignOutAlt,
+  FaSignInAlt,
+  FaUserPlus,
+  FaTools,
+} from 'react-icons/fa';
 
 const Navbar = () => {
   const { isAuthenticated, user, logout } = useAuth();
@@ -43,13 +50,32 @@ const Navbar = () => {
                   <FaUserCircle size={22} className="me-1 text-secondary" />
                   <span className="nav-link">Olá, {user?.nomeCompleto.split(' ')[0]}</span>
                 </li>
+
+                {user?.roleId === 2 && (
+                  <li className="nav-item">
+                    <Link
+                      className="btn btn-outline-warning d-flex align-items-center gap-2"
+                      to="/adm"
+                    >
+                      <FaTools /> Administração
+                    </Link>
+                  </li>
+                )}
+
                 <li className="nav-item">
-                  <Link className="btn btn-outline-light d-flex align-items-center gap-2" to="/carrinho">
+                  <Link
+                    className="btn btn-outline-light d-flex align-items-center gap-2"
+                    to="/carrinho"
+                  >
                     <FaShoppingCart /> Meu Carrinho
                   </Link>
                 </li>
+
                 <li className="nav-item">
-                  <button className="btn btn-danger d-flex align-items-center gap-2" onClick={handleLogout}>
+                  <button
+                    className="btn btn-danger d-flex align-items-center gap-2"
+                    onClick={handleLogout}
+                  >
                     <FaSignOutAlt /> Logout
                   </button>
                 </li>
@@ -57,12 +83,18 @@ const Navbar = () => {
             ) : (
               <>
                 <li className="nav-item">
-                  <Link className="btn btn-outline-light d-flex align-items-center gap-2" to="/login">
+                  <Link
+                    className="btn btn-outline-light d-flex align-items-center gap-2"
+                    to="/login"
+                  >
                     <FaSignInAlt /> Login
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="btn btn-danger d-flex align-items-center gap-2" to="/register">
+                  <Link
+                    className="btn btn-danger d-flex align-items-center gap-2"
+                    to="/register"
+                  >
                     <FaUserPlus /> Registrar
                   </Link>
                 </li>

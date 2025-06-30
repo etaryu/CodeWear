@@ -1,4 +1,3 @@
-// src/hooks/useColecoes.js
 import api from '../services/api';
 
 export const useColecoes = () => {
@@ -20,4 +19,3 @@ export const useColecoes = () => {
     deletarColecao,
   };
 };
-    

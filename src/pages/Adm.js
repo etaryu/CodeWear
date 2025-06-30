@@ -13,7 +13,7 @@ const Adm = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    let isMounted = true; // evita atualizar estado se componente desmontar
+    let isMounted = true; 
     const fetchProdutos = async () => {
       try {
         const res = await listarProdutos();
@@ -29,7 +29,7 @@ const Adm = () => {
     return () => {
       isMounted = false;
     };
-  }, []); // executa só uma vez ao montar
+  }, []); 
 
   const handleEditar = (id) => {
     navigate(`/editar-produto/${id}`);

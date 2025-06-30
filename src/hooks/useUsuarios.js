@@ -18,7 +18,7 @@ export const useUsuarios = () => {
   return {
     listarUsuarios,
     buscarUsuarioPorId,
-    autenticarUsuarioPorId, // 👈 novo método
+    autenticarUsuarioPorId, 
     criarUsuario,
     atualizarUsuario,
     deletarUsuario,

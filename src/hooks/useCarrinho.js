@@ -11,7 +11,6 @@ export const useCarrinho = () => {
 
   const finalizarCarrinho = (id) => api.post(`/carrinhos/${id}/finalizar`);
 
-  // ✅ Novo endpoint correto
   const listarCarrinhosDoUsuario = (usuarioId) =>
     api.get(`/usuarios/${usuarioId}/carrinhos`);
 

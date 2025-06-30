@@ -25,10 +25,27 @@ const Home = () => {
   const [erroComentarios, setErroComentarios] = useState(false);
 
   useEffect(() => {
-    listarProdutos().then(res => setProdutos(res.data)).catch(() => setErroProdutos(true));
-    listarUsuarios().then(res => setUsuarios(res.data));
-    listarComentarios().then(res => setComentarios(res.data)).catch(() => setErroComentarios(true));
-    listarColecoes().then(res => setColecoes(res.data));
+    listarProdutos()
+      .then(res => setProdutos(res.data))
+      .catch(() => setErroProdutos(true));
+
+    listarUsuarios()
+      .then(res => setUsuarios(res.data));
+
+    listarComentarios()
+      .then(res => setComentarios(res.data))
+      .catch(() => setErroComentarios(true));
+
+    listarColecoes()
+      .then(res => {
+        if (Array.isArray(res.data)) {
+          setColecoes(res.data);
+        } else {
+          setColecoes([]);
+          console.warn('listarColecoes retornou algo inesperado:', res.data);
+        }
+      })
+      .catch(() => setColecoes([]));
   }, []);
 
   const obterImagemDaColecao = (colecaoId) => {
@@ -86,11 +103,10 @@ const Home = () => {
         </div>
       </section>
 
-
       <section id="colecoes" className="colecoes py-5 bg-light text-center">
         <h2 className="colecoes__title">Coleções</h2>
         <div className="row justify-content-center mt-4 colecoes__list">
-          {(colecoes.length === 0 ? [...Array(4)] : colecoes.slice(0, 4)).map((colecao, i) => (
+          {(Array.isArray(colecoes) && colecoes.length > 0 ? colecoes.slice(0, 4) : [...Array(4)]).map((colecao, i) => (
             <div key={colecao?.id || i} className="col-6 col-md-3 mb-4 colecoes__item">
               <img
                 src={colecao ? obterImagemDaColecao(colecao.id) : '/img/placeholder.jpg'}
@@ -102,7 +118,6 @@ const Home = () => {
           ))}
         </div>
       </section>
-
 
       <section id="comentarios" className="comentarios py-5 bg-light text-center">
         <h2 className="comentarios__title mb-5">Comentários em Destaque</h2>

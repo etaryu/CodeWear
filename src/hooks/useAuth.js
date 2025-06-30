@@ -43,8 +43,8 @@ export const useAuth = () => {
 
   const logout = () => {
     setUser(null);
-    localStorage.clear(); // limpa tudo
-    navigate('/'); // redireciona para home ou login se quiser
+    localStorage.clear(); 
+    navigate('/'); 
   };
 
 
